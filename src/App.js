@@ -1,11 +1,16 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import Hello from "./Hello"
+import TaskForm from './components/taskForm/TaskForm';
+import Task from './components/task/Task';
 
 function App() {
   return (
     <div className="tasks-list">
-      <Hello/>
+      <TaskForm />
+      <Task />
+      <Task />
+      <Task />
     </div>
   )
 }
