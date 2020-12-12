@@ -1,6 +1,6 @@
 import React from 'react'
 import './Task.css'
-export default function Task() {  
+export default function Task(props) {  
   const renderActions = ()=>{
     return (
       <div className="actions">
@@ -11,8 +11,12 @@ export default function Task() {
   }
     return (
       <div className="task">
-        <div className="title">Learn html</div>
+        <div className="title">{props.title}</div>
+        <div className="sub-title">{props.details.type} ({props.details.date})</div>
+
         {renderActions()}
       </div>
     )
 }
+
+
