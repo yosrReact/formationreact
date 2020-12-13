@@ -1,7 +1,6 @@
 import React from 'react'
 import './TaskForm.css'
-export default function TaskForm(props) {
-  props.sayHello()
+export default function TaskForm() {
   const addTask="Add a task"
     return (
       <div className="task-form">
