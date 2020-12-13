@@ -1,6 +1,6 @@
 import React from "react"
 import "./Task.css"
-export default function Task({ id, title, duration }) {
+export default function Task({ id, title, duration, deleteTask }) {
   const renderActions = () => {
     return (
       <div className="actions">
@@ -18,7 +18,7 @@ export default function Task({ id, title, duration }) {
       </div>
       <div className="actions">
         <div>
-          <button>delete</button>
+          <button onClick={() => deleteTask(id)}>delete</button>
           <button>update</button>
         </div>
       </div>

@@ -11,7 +11,7 @@ function App() {
     setIsVisible(!isVisible)
   }
 
-  const tasks= [
+  const [tasks, setTasks] = useState([
     {
       id: "1",
       title: "Learn html",
@@ -27,23 +27,28 @@ function App() {
       title: "Learn node",
       duration: 50,
     },
-  ]
+  ])
+
+  const addTask = (title, duration) => {
+    setTasks([...tasks, { id: tasks.length+1, title, duration }])
+  }
+   const deleteTask = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id)
+    setTasks(newTasks)
+  }
 
   
   return (
     <div className="app">
       <div className="toggle">
-        {/* 1ère solution */}
-        <button onClick={() => toggleVisibility()}>Toggle visibility</button>
-        {/* 2ème solution */}
-        {/* <button onClick={toggleVisibility}>Toggle visibility</button> */}
+        <button onClick={toggleVisibility}>Toggle visibility</button>
       </div>
       <div>
         {loading && <div>Loading ... </div>}
         {!loading && isVisible && (
           <div>
-            <TaskForm />
-            {<TasksList tasks={tasks} />}
+            <TaskForm addTask={addTask} />
+            <TasksList tasks={tasks} deleteTask={deleteTask} />
           </div>
         )}
       </div>
