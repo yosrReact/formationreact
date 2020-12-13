@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import "./App.css"
 import TaskForm from "./components/taskForm/TaskForm"
 import TasksList from "./components/tasksList/TasksList"
@@ -7,7 +7,7 @@ function App() {
   let loading = false
   
 
-  const [tasks, setTasks] = useState([
+  const tasks= [
     {
       id: "1",
       title: "Learn html",
@@ -23,7 +23,7 @@ function App() {
       title: "Learn node",
       duration: 50,
     },
-  ])
+  ]
 
   
   return (
