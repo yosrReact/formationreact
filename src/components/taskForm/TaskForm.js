@@ -1,6 +1,6 @@
-import React, { useState, useRef, memo } from "react"
+import React, { useState } from "react"
 import "./TaskForm.css"
-function TaskForm({ addTask }) {
+function TaskForm({ addTask}) {
   const [title, setTitle] = useState("")
   const [duration, setDuration] = useState(0)
   const handleAddTask = () => {
@@ -29,4 +29,4 @@ function TaskForm({ addTask }) {
     </div>
   )
 }
-export default memo(TaskForm)
+export default TaskForm
