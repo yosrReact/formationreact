@@ -2,7 +2,7 @@
     border: 1px solid gray;
     padding: 20px;
     margin: 10px;
-    width: 400px;
+    width: 800px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,4 +15,8 @@
 
 .task .actions {
     color: blue;
+}
+
+.customTask {
+    color: red
 }

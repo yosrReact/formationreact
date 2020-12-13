@@ -11,8 +11,17 @@ export default function Task(props) {
   }
     return (
       <div className="task">
-        <div className="title">{props.title}</div>
-        <div className="sub-title">{props.details.type} ({props.details.date})</div>
+        <div
+          className={`title ${props.type === "beginner" ? "customTask" : ""}`}
+        >
+          {props.title} ({props.duration} mn)
+        </div>
+        {props.type && (
+          <div className="sub-title">
+            {props.type} - {props.date}
+            {props.children}
+          </div>
+        )}
 
         {renderActions()}
       </div>
