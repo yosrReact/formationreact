@@ -30,14 +30,20 @@ function App() {
   ])
 
   const addTask = (title, duration) => {
-    setTasks([...tasks, { id: tasks.length+1, title, duration }])
+    setTasks([...tasks, { id: tasks.length + 1, title, duration }])
   }
-   const deleteTask = (id) => {
+  const deleteTask = (id) => {
     const newTasks = tasks.filter((task) => task.id !== id)
     setTasks(newTasks)
   }
 
-  
+  const updateTask = (id, title, duration) => {
+    const newTasks = tasks.map((task) =>
+      task.id === id ? { id, title, duration } : task
+    )
+    setTasks(newTasks)
+  }
+
   return (
     <div className="app">
       <div className="toggle">
@@ -48,7 +54,11 @@ function App() {
         {!loading && isVisible && (
           <div>
             <TaskForm addTask={addTask} />
-            <TasksList tasks={tasks} deleteTask={deleteTask} />
+            <TasksList
+              tasks={tasks}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+            />
           </div>
         )}
       </div>

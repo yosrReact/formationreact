@@ -2,7 +2,7 @@ import React from "react"
 import Task from "./../task/Task"
 import "./TasksList.css"
 
-export default function TasksList({ tasks, deleteTask }) {
+export default function TasksList({ tasks, deleteTask, updateTask }) {
   return (
     <div className="tasks-list">
       <div>
@@ -13,6 +13,7 @@ export default function TasksList({ tasks, deleteTask }) {
             title={task.title}
             duration={task.duration}
             deleteTask={deleteTask}
+            updateTask={updateTask}
           />
         ))}
       </div>
