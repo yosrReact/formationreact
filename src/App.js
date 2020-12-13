@@ -1,11 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import "./App.css"
 import TaskForm from "./components/taskForm/TaskForm"
 import TasksList from "./components/tasksList/TasksList"
 
 function App() {
   let loading = false
-  
+  const [isVisible, setIsVisible] = useState(true)
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible)
+  }
 
   const tasks= [
     {
@@ -28,13 +32,21 @@ function App() {
   
   return (
     <div className="app">
-      {loading && <div>Loading ... </div>}
-      {!loading && (
-        <div>
-          <TaskForm  />
-          {<TasksList tasks={tasks} />}
-        </div>
-      )}
+      <div className="toggle">
+        {/* 1ère solution */}
+        <button onClick={() => toggleVisibility()}>Toggle visibility</button>
+        {/* 2ème solution */}
+        {/* <button onClick={toggleVisibility}>Toggle visibility</button> */}
+      </div>
+      <div>
+        {loading && <div>Loading ... </div>}
+        {!loading && isVisible && (
+          <div>
+            <TaskForm />
+            {<TasksList tasks={tasks} />}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
