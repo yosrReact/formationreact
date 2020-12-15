@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react"
 import "./App.css"
 import TaskForm from "./components/taskForm/TaskForm"
 import TasksList from "./components/tasksList/TasksList"
-import { fetchTasks, fetchTasksByFilter } from "./services/tasks.service"
+import {
+  fetchTasks,
+  fetchTasksByFilter,
+  addTask as addTaskFromService,
+  deleteTask as deleteTaskFromService,
+  updateTask as updateTaskFromService,
+} from "./services/tasks.service"
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -72,19 +78,32 @@ function App() {
   //   }
   // }, [searchValue])
 
-  const addTask = (title, duration) => {
-    setTasks([...tasks, { id: tasks.length + 1, title, duration }])
+  const addTask = async (title, duration) => {
+    try {
+      const newTask = await addTaskFromService(title, duration)
+      setTasks([...tasks, newTask])
+    } catch (e) {
+      console.log("error")
+    }
   }
-  const deleteTask = (id) => {
-    const newTasks = tasks.filter((task) => task.id !== id)
-    setTasks(newTasks)
+  const deleteTask = async (id) => {
+    try {
+      await deleteTaskFromService(id)
+      const newTasks = tasks.filter((task) => task.id !== id)
+      setTasks(newTasks)
+    } catch (e) {
+      console.log("error")
+    }
   }
 
-  const updateTask = (id, title, duration) => {
-    const newTasks = tasks.map((task) =>
-      task.id === id ? { id, title, duration } : task
-    )
-    setTasks(newTasks)
+  const updateTask = async (id, title, duration) => {
+    try {
+      const newTask = await updateTaskFromService(id,title, duration)
+      const newTasks = tasks.map((task) => (task.id === id ? newTask : task))
+      setTasks(newTasks)
+    } catch (e) {
+      console.log("error")
+    }
   }
 
   return (
