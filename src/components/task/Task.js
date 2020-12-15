@@ -25,7 +25,7 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
           <Link to={`/tasks/${id}`}>
 
             <div className="title">
-              {title} ({duration} mn)
+              {title} ({duration})
             </div>
             </Link>
           </div>
