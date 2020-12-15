@@ -34,8 +34,12 @@ export const fetchTaskById = async (id) => {
   return task
 }
 
-export const addTask = async (title, duration) => {
-  const newTask = { id: tasks.length + 1, title, duration }
+export const addTask = async (task) => {
+  const newTask = {
+    id: tasks.length + 1,
+    title: task.title,
+    duration: task.duration,
+  }
 
   tasks=tasks.concat(newTask)
   return newTask
@@ -45,8 +49,8 @@ export const deleteTask = async (id) => {
   tasks = tasks.filter((task) => task.id !== id)
 }
 
-export const updateTask = async (id, title, duration) => {
-  const updatedTask = { id, title, duration }
+export const updateTask = async (id, task) => {
+  const updatedTask = { id, title: task.title, duration: task.duration }
   tasks = tasks.map((task) => (task.id === id ? updatedTask : task))
   return updatedTask
 }
