@@ -1,0 +1,28 @@
+
+
+.list-view .toggle,
+.list-view .search {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.list-view .toggle button {
+    color: #007eff;
+    border: 1px solid #007eff;
+    background-color: white;
+    margin-right: 10px;
+    padding: 6px;
+
+}
+
+.list-view input {
+    padding: 5px;
+}
+
+body {
+    background-color: #ffa50059
+}
+
+button {
+    cursor: pointer;
+}
