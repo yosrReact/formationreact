@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
 import "./Task.css"
+import { Link } from 'react-router-dom'
+import { useHistory /*, Redirect*/ } from "react-router-dom"
+
 export default function Task({ id, title, duration, deleteTask, updateTask }) {
   const [updateMode, setUpdateMode] = useState(false)
   const [titleToUpdate, setTitleToUpdate] = useState(title)
@@ -19,9 +22,12 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
       {!updateMode ? (
         <>
           <div>
+          <Link to={`/tasks/${id}`}>
+
             <div className="title">
               {title} ({duration} mn)
             </div>
+            </Link>
           </div>
           <div className="actions">
             <div>
