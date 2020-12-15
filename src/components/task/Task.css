@@ -39,3 +39,9 @@
     border: none;
     padding: 6px;
 }
+
+.task .link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}

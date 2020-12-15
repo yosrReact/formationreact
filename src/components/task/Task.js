@@ -17,18 +17,22 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
      document.title = title
      // setTitle("hello"+ Math.random())
    })
+  const history = useHistory()
+  const handleDetails = () => {
+    history.push(`/tasks/${id}`)
+  }
   return (
     <div className="task">
       {!updateMode ? (
         <>
-          <div>
-          <Link to={`/tasks/${id}`}>
+          {/* <div onClick={handleDetails} className="link"> */}
+            <Link to={`/tasks/${id}`}>
 
             <div className="title">
               {title} ({duration} mn)
             </div>
             </Link>
-          </div>
+          {/* </div> */}
           <div className="actions">
             <div>
               <button onClick={() => deleteTask(id)}>delete</button>
