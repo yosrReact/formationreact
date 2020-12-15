@@ -17,45 +17,48 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
      document.title = title
      // setTitle("hello"+ Math.random())
    })
-  return (
-    <div className="task">
-      {!updateMode ? (
-        <>
+    const history = useHistory()
+    const handleDetails = () => {
+      history.push(`/tasks/${id}`)
+    }
+    return (
+      <div className="task">
+        {!updateMode ? (
+          <>
+            <div onClick={handleDetails} className="link">
+            {/* <Link to={`/tasks/${id}`}> */}
+              <div className="title">
+                {title} ({duration} mn)
+              </div>
+            {/* </Link> */}
+            </div>
+            <div className="actions">
+              <div>
+                <button onClick={() => deleteTask(id)}>delete</button>
+                <button onClick={() => setUpdateMode(true)}>update</button>
+              </div>
+            </div>
+          </>
+        ) : (
           <div>
-          <Link to={`/tasks/${id}`}>
-
-            <div className="title">
-              {title} ({duration})
-            </div>
-            </Link>
+            <input
+              type="text"
+              name="title"
+              value={titleToUpdate}
+              onChange={(e) => setTitleToUpdate(e.target.value)}
+            />
+            <input
+              type="number"
+              value={durationToUpdate}
+              name="duration"
+              onChange={(e) => setDurationToUpdate(e.target.value)}
+            />
+            <button className="button" onClick={handleUpdateTask}>
+              Update a task
+            </button>
           </div>
-          <div className="actions">
-            <div>
-              <button onClick={() => deleteTask(id)}>delete</button>
-              <button onClick={() => setUpdateMode(true)}>update</button>
-            </div>
-          </div>
-        </>
-      ) : (
-        <div>
-          <input
-            type="text"
-            name="title"
-            value={titleToUpdate}
-            onChange={(e) => setTitleToUpdate(e.target.value)}
-          />
-          <input
-            type="number"
-            value={durationToUpdate}
-            name="duration"
-            onChange={(e) => setDurationToUpdate(e.target.value)}
-          />
-          <button className="button" onClick={handleUpdateTask}>
-            Update a task
-          </button>
-        </div>
-      )}
-    </div>
-  )
+        )}
+      </div>
+    )
 }
 
