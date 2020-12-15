@@ -35,15 +35,6 @@ function TaskDetails() {
 
           <div className="title">Title</div>
           <div className="value">{task.duration}</div>
-
-          <div className="title">Type</div>
-          <div className="value">{task.type}</div>
-
-          <div className="title">Date</div>
-          <div className="value">{task.date}</div>
-
-          <div className="title">Description</div>
-          <div className="value">{task.description}</div>
         </>
       )}
     </div>
