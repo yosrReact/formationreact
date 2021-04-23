@@ -21,7 +21,8 @@ function delay(ms) {
 }
 
 export const fetchTasks = async () => {
-  await delay(1000)
+  await delay(3000)
+  // throw new Error("fetch data error")
   return tasks
 }
 export const fetchTasksByFilter = async (searchValue) => {

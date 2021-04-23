@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./TaskForm.css"
 function TaskForm({ addTask}) {
   const [title, setTitle] = useState("")
@@ -8,7 +8,15 @@ function TaskForm({ addTask}) {
     setTitle("")
     setDuration(0)
   }
+  //1ère forme de useEffect
+  useEffect(() => {
+    // console.log("hello")
+    document.title = title
+    // setTitle("hello"+ Math.random())
+  })
 
+  
+  
   return (
     <div className="task-form">
       <input

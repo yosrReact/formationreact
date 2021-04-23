@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import "./Task.css"
 export default function Task({ id, title, duration, deleteTask, updateTask }) {
   const [updateMode, setUpdateMode] = useState(false)
@@ -8,12 +8,7 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
     updateTask(id, titleToUpdate, durationToUpdate)
     setUpdateMode(false)
   }
-  //1ère forme de useEffect
-   useEffect(() => {
-     // console.log("hello")
-     document.title = title
-     // setTitle("hello"+ Math.random())
-   })
+  
   return (
     <div className="task">
       {!updateMode ? (
