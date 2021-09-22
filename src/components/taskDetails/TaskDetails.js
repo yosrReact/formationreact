@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { fetchTaskById } from "../../services/tasks.service"
 import { useParams, useLocation } from "react-router-dom"
+ import { useDispatch } from "react-redux"
+import * as actions from "../../redux/actions/tasks"
+
 import './TaskDetails.css'
 import Menu from './../menu/Menu';
 function TaskDetails() {
   const [loading, setLoading] = useState(false)
   const [task, setTask] = useState({})
- 
+   const dispatch = useDispatch()
  
   const { taskId } = useParams()
   console.log('useParams(): ', useParams());
@@ -22,6 +25,9 @@ function TaskDetails() {
     fetchData()
   }, [taskId])
 
+  useEffect(() => {
+    dispatch(actions.setSelectedTaskName(task.title))
+  }, [task])
   return (
     <div className="task-details">
       <Menu />

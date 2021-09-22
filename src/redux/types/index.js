@@ -1,0 +1,2 @@
+export const SET_SELECTED_TASK = "SET_SELECTED_TASK"
+
