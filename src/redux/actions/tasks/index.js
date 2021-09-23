@@ -5,46 +5,46 @@ export const setSelectedTask = (id) => ({
   id
 })
 
-export const fetchTasks = () => {
-  const tasks = api.fetchTasks()
-  return {
+export const fetchTasks = () => async dispatch => {
+  const tasks =await api.fetchTasks()
+   dispatch ({
     type: types.FETCH_TASKS,
     tasks,
-  }
+  })
 }
 
-export const fetchTaskById = (id) => {
-  const task = api.fetchTaskById(id)
-  return {
+export const fetchTaskById = (id) => async (dispatch) => {
+  const task = await api.fetchTaskById(id)
+  dispatch ( {
     type: types.FETCH_TASK_BY_ID,
     task,
-  }
+  })
 }
 
-export const addTask = (task) => {
-  const newTask = api.addTask(task)
+export const addTask = (task) => async (dispatch) => {
+  const newTask = await api.addTask(task)
 
-  return {
+  dispatch({
     type: types.ADD_TASK,
     task: newTask,
-  }
+  })
 }
 
-export const updateTask = (id, task) => {
-  const updatedTask = api.updateTask(id, task)
+export const updateTask = (id, task) => async (dispatch) => {
+  const updatedTask = await api.updateTask(id, task)
 
-  return {
+  dispatch ( {
     type: types.UPDATE_TASK,
     id,
     task: updatedTask,
-  }
+  })
 }
-export const deleteTask = (id) => {
-  api.deleteTask(id)
-  return {
+export const deleteTask = (id) => async (dispatch) => {
+  await api.deleteTask(id)
+  dispatch ( {
     type: types.DELETE_TASK,
     id,
-  }
+  })
 }
 
 
