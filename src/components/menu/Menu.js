@@ -3,10 +3,11 @@ import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 import "./Menu.css"
 function Menu() {
-  const tasks = useSelector((state) => state.tasks)
+    const task = useSelector((state) => state.tasks && state.tasks.selectedTask)
+
   return (
     <>
-      {tasks && tasks.selectedTaskName}
+      {task.title}
       <ul>
         <li>
           <NavLink

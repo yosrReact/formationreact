@@ -1,36 +1,40 @@
 import React, { useEffect, useState } from "react"
-import { fetchTaskById } from "../../services/tasks.service"
-import { useParams, useLocation } from "react-router-dom"
- import { useDispatch } from "react-redux"
+// import { fetchTaskById } from "../../services/tasks.service"
+import { useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import * as actions from "../../redux/actions/tasks"
 
-import './TaskDetails.css'
-import Menu from './../menu/Menu';
+import "./TaskDetails.css"
+import Menu from "./../menu/Menu"
 function TaskDetails() {
   const [loading, setLoading] = useState(false)
-  const [task, setTask] = useState({})
-   const dispatch = useDispatch()
- 
+  const task = useSelector((state) => (state.tasks && state.tasks.selectedTask))
+  // const [task, setTask] = useState({})
+  const dispatch = useDispatch()
+
   const { taskId } = useParams()
-  console.log('useParams(): ', useParams());
-  console.log('useLocation(): ', useLocation());
+  // console.log("useParams(): ", useParams())
+  // console.log("useLocation(): ", useLocation())
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      const result = await fetchTaskById(taskId)
-      setTask(result)
-      setLoading(false)
-    }
-    fetchData()
+
+    // const fetchData = async () => {
+    //   setLoading(true)
+    //   const result = await fetchTaskById(taskId)
+    //   setTask(result)
+    //   setLoading(false)
+    // }
+    // fetchData()
+    dispatch(actions.fetchTaskById(Number(taskId)))
+
   }, [taskId])
 
-  useEffect(() => {
-    dispatch(actions.setSelectedTaskName(task.title))
-  }, [task])
+  // useEffect(() => {
+  //   dispatch(actions.setSelectedTaskName(task.title))
+  // }, [task])
   return (
     <div className="task-details">
-      <Menu />
+      <Menu/>
       <div className="header">Task details</div>
       {loading ? (
         <div>Loading ... </div>
