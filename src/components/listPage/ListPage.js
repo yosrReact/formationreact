@@ -26,22 +26,7 @@ function ListPage() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
-  // 2ème forme de useEffect
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setLoading(true)
-  //     try {
-  //       const result = await fetchTasks()
-  //       setTasks(result)
-  //       setLoading(false)
-  //     } catch (e) {
-  //       console.log("error")
-  //       setLoading(false)
-  //     }
-  //   }
-  //   console.log("useEffect")
-  //   fetchData()
-  // }, [])
+  
   useEffect(() => {
     dispatch(actions.fetchTasks())
   }, [])
@@ -102,8 +87,8 @@ function ListPage() {
         <div>
           <TaskForm addTask={addTask} />
 
-          {loading && <div>Loading ... </div>}
-          {!loading && isVisible && (
+          {tasks.loading && <div>Loading ... </div>}
+          {!tasks.loading && isVisible && (
             <TasksList
               tasks={tasks.list}
               deleteTask={deleteTask}

@@ -5,12 +5,26 @@ export const setSelectedTask = (id) => ({
   id
 })
 
-export const fetchTasks = () => async dispatch => {
-  const tasks =await api.fetchTasks()
-   dispatch ({
-    type: types.FETCH_TASKS,
-    tasks,
-  })
+export const fetchTasks = () => async (dispatch) => {
+   dispatch({
+     type: types.FETCH_TASKS_REQUEST,
+     
+   })
+      try {
+        const tasks = await api.fetchTasks()
+         dispatch({
+           type: types.FETCH_TASKS_SUCCESS,
+           tasks,
+         })
+      } catch (e) {
+       dispatch({
+         type: types.FETCH_TASKS_FAILURE,
+       })
+      }
+
+
+ 
+ 
 }
 
 export const fetchTaskById = (id) => async (dispatch) => {

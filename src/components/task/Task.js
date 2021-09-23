@@ -15,11 +15,8 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
     updateTask(id, titleToUpdate, durationToUpdate)
     setUpdateMode(false)
   }
-  //1ère forme de useEffect
   useEffect(() => {
-    // console.log("hello")
     document.title = title
-    // setTitle("hello"+ Math.random())
   })
   useEffect(() => {
     if (updateMode) {
