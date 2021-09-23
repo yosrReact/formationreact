@@ -2,6 +2,8 @@ import * as types from "../types"
 
 const initialState = {
   selectedTask: {},
+  loading: false,
+  errors: false,
   list: [
     // {
     //   id: "1",
@@ -28,14 +30,16 @@ const tasks = (state = initialState, action) => {
         ...state,
         selectedTask: state.list.find((task) => task.id === action.id) || {},
       }
-    case types.FETCH_TASKS:
-      // ne pas faire state.tasks=action.tasks
-      return { ...state, list: [...action.tasks] }
-      // return state
-
+    case types.FETCH_TASKS_REQUEST:
+      return { ...state, loading: true, error: true }
+    case types.FETCH_TASKS_SUCCESS:
+      return { ...state, list: [...action.tasks], loading: false }
+    case types.FETCH_TASKS_FAILURE:
+      return { ...state, error: true, loading: false }
     case types.FETCH_TASK_BY_ID:
       return {
-        ...state, selectedTask:action.task
+        ...state,
+        selectedTask: action.task,
       }
 
     case types.ADD_TASK:
@@ -48,12 +52,9 @@ const tasks = (state = initialState, action) => {
       // return state
       return {
         ...state,
-        list: [
-          ...state.list,
-         action.task ,
-        ], // or list: state.list.concat(action.task)
+        list: [...state.list, action.task], // or list: state.list.concat(action.task)
       }
-   
+
     case types.UPDATE_TASK:
       const updatedTasks = state.list.map((task) => {
         if (task.id === action.id) {
