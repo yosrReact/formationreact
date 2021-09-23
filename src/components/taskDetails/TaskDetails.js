@@ -3,14 +3,13 @@ import { fetchTaskById } from "../../services/tasks.service"
 import { useParams, useLocation } from "react-router-dom"
 import './TaskDetails.css'
 import Menu from './../menu/Menu';
-function TaskDetails() {
+function TaskDetails({ setSelectedName, selectedTaskName }) {
   const [loading, setLoading] = useState(false)
   const [task, setTask] = useState({})
- 
- 
+
   const { taskId } = useParams()
-  console.log('useParams(): ', useParams());
-  console.log('useLocation(): ', useLocation());
+  console.log("useParams(): ", useParams())
+  console.log("useLocation(): ", useLocation())
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,9 +21,16 @@ function TaskDetails() {
     fetchData()
   }, [taskId])
 
+  useEffect(() => {
+    setSelectedName(task.title)
+     return () => {
+        setSelectedName("")
+     }
+  }, [task])
+
   return (
     <div className="task-details">
-      <Menu />
+      <Menu selectedTaskName={selectedTaskName} />
       <div className="header">Task details</div>
       {loading ? (
         <div>Loading ... </div>

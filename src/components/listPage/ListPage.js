@@ -11,7 +11,7 @@ import {
   updateTask as updateTaskFromService,
 } from "../../services/tasks.service"
 
-function ListPage() {
+function ListPage({ selectedTaskName, setSelectedName }) {
   const [loading, setLoading] = useState(false)
   const [tasks, setTasks] = useState([])
 
@@ -71,7 +71,6 @@ function ListPage() {
       const newTasks = tasks.map((task) => (task.id === id ? newTask : task))
       setTasks(newTasks)
       setLoading(false)
-      
     } catch (e) {
       console.log("error")
     }
@@ -79,7 +78,7 @@ function ListPage() {
 
   return (
     <div className="list-view">
-      <Menu />
+      <Menu selectedTaskName={selectedTaskName} />
       <div className="toggle">
         <button onClick={toggleVisibility}>Toggle visibility</button>
       </div>
@@ -93,6 +92,7 @@ function ListPage() {
               tasks={tasks}
               deleteTask={deleteTask}
               updateTask={updateTask}
+              setSelectedName={setSelectedName}
             />
           )}
         </div>

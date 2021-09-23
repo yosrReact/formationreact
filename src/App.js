@@ -13,6 +13,9 @@ import TaskDetails from "./components/taskDetails/TaskDetails"
 
 function App() {
   
+  const [selectedTaskName, setSelectedName] = useState("")
+  console.log('selectedTaskName: ', selectedTaskName);
+
 
  
   return (
@@ -34,11 +37,17 @@ function App() {
           </Route>
 
           <Route exact path="/tasks">
-            <ListPage />
+            <ListPage
+              selectedTaskName={selectedTaskName}
+              setSelectedName={setSelectedName}
+            />
           </Route>
 
           <Route exact path="/tasks/:taskId">
-            <TaskDetails />
+            <TaskDetails
+              setSelectedName={setSelectedName}
+              selectedTaskName={selectedTaskName}
+            />
           </Route>
 
           <Route path="/">

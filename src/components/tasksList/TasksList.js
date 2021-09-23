@@ -2,7 +2,7 @@ import React from "react"
 import Task from "./../task/Task"
 import "./TasksList.css"
 
-export default function TasksList({ tasks, deleteTask, updateTask }) {
+export default function TasksList({ tasks, deleteTask, updateTask, setSelectedName }) {
   return (
     <div className="tasks-list">
       <div>
@@ -14,6 +14,7 @@ export default function TasksList({ tasks, deleteTask, updateTask }) {
             duration={task.duration}
             deleteTask={deleteTask}
             updateTask={updateTask}
+            setSelectedName={setSelectedName}
           />
         ))}
       </div>
