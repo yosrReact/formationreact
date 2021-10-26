@@ -1,74 +1,37 @@
-import * as types from "../types"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import * as api from "../../services/tasks.service"
+
+export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
+  const tasks = await api.fetchTasks()
+  return tasks
+})
 
 const initialState = {
   selectedTask: {},
   loading: false,
   errors: false,
-  list: [
-    // {
-    //   id: "1",
-    //   title: "Learn html",
-    //   duration: 60,
-    // },
-    // {
-    //   id: "2",
-    //   title: "Learn react",
-    //   duration: 30,
-    // },
-    // {
-    //   id: "3",
-    //   title: "Learn node",
-    //   duration: 50,
-    // },
-  ],
+  list: [],
 }
 
-const tasks = (state = initialState, action) => {
-  switch (action.type) {
-    case types.SET_SELECTED_TASK:
-      return {
-        ...state,
-        selectedTask: state.list.find((task) => task.id === action.id) || {},
-      }
-    case types.FETCH_TASKS_REQUEST:
-      return { ...state, loading: true, error: true }
-    case types.FETCH_TASKS_SUCCESS:
-      return { ...state, list: [...action.tasks], loading: false }
-    case types.FETCH_TASKS_FAILURE:
-      return { ...state, error: true, loading: false }
-    case types.FETCH_TASK_BY_ID:
-      return {
-        ...state,
-        selectedTask: action.task,
-      }
-
-    case types.ADD_TASK:
-      console.log(action)
-      // ne pas faire state.list=[...state.list, {id: ""+(state.list.length+1), ...action.task}]
-      // ou
-      // state.list.push(
-      //   { id: "" + (state.list.length + 1), ...action.task },
-      // )
-      // return state
-      return {
-        ...state,
-        list: [...state.list, action.task], // or list: state.list.concat(action.task)
-      }
-
-    case types.UPDATE_TASK:
-      const updatedTasks = state.list.map((task) => {
-        if (task.id === action.id) {
-          return action.task
-        }
-        return task
+const tasksSlice = createSlice({
+  name:'tasks',
+  initialState,
+  reducers:{
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchTasks.pending, (state, action) => {
+        state.loading= true
+        state.error= false 
       })
-      return { ...state, list: updatedTasks }
-
-    case types.DELETE_TASK:
-      const newTasks = state.list.filter((task) => task.id !== action.id)
-      return { ...state, list: newTasks }
-    default:
-      return state
+      .addCase(fetchTasks.fulfilled, (state, action) => {
+        console.log('action: ', action);
+       state.list= [...action.payload]
+       state.loading= false 
+     
+      })
   }
-}
-export default tasks
+})
+
+
+export default tasksSlice.reducer

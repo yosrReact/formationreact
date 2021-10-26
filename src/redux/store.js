@@ -3,38 +3,29 @@ import { applyMiddleware, compose } from "redux"
 // import logger from "redux-logger"
 
 import thunk from "redux-thunk"
-import rootReducer from "./reducers"
-import { createStore } from "redux"
-
-// console.log('createStore(rootReducer): ', createStore(rootReducer()).getState());
-export const configureStore = () => {
-  const middlewares = [thunk]
-  const composeEnhancers =
-    process.env.NODE_ENV !== "production"
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-      : compose
-  return createStore(
-    rootReducer(),
-    composeEnhancers(applyMiddleware(...middlewares))
-  )
-}
-
-// export const history = createHistory()
+// import rootReducer from "./reducers"
+// import { createStore } from "redux"
+import { configureStore } from "@reduxjs/toolkit"
+import tasksReducer from "./reducers/tasks"
+import counterReducer from "./reducers/counter"
 
 // export const configureStore = () => {
-//   const middlewares = [thunk, routerMiddleware(history)]
-//   if (process.env.NODE_ENV !== "production") {
-//     middlewares.push(logger)
-//   }
-
+//   const middlewares = [thunk]
 //   const composeEnhancers =
 //     process.env.NODE_ENV !== "production"
 //       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 //       : compose
 //   return createStore(
-//     createRootReducer(history),
+//     rootReducer(),
 //     composeEnhancers(applyMiddleware(...middlewares))
 //   )
 // }
 
-// export default configureStore
+const store = configureStore({
+  reducer: {
+    tasks: tasksReducer,
+    counter: counterReducer
+  },
+})
+
+export default store

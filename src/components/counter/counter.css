@@ -1,0 +1,30 @@
+.counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  /* background-color: #efef; */
+  color: #333;
+}
+
+.counter-value {
+  font-size: 5rem;
+  padding: 1rem;
+}
+
+.counter-nav button {
+  padding: 1rem;
+  margin-left: 1rem;
+  min-width: 7rem;
+  font-size: 1rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #fefe;
+  color: #333;
+  cursor: pointer;
+}
+
+.counter-nav button:hover {
+  background-color: #efef;
+}

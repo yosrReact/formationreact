@@ -17,7 +17,7 @@ function Menu() {
               pathname.match("/hello") || pathname === "/"
             }
           >
-            Home
+            Counter
           </NavLink>{" "}
         </li>
         <li>

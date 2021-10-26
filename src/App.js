@@ -9,7 +9,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom"
-import TaskDetails from "./components/taskDetails/TaskDetails"
 
 function App() {
   return (
@@ -28,16 +27,14 @@ function App() {
               <Redirect to="/hello" />
             </Route>
             <Route exact path="/hello">
-              <Hello value="Welcome to my web site" />
+              <Hello value="This is an application of redux toolkit on counter example" />
             </Route>
 
             <Route exact path="/tasks">
               <ListPage />
             </Route>
 
-            <Route exact path="/tasks/:taskId">
-              <TaskDetails />
-            </Route>
+          
 
             <Route path="/">
               <Hello value="Welcome to my web site" />
