@@ -100,5 +100,10 @@ export const fetchTasks = async () => {
   const result = await Axios.get(
     "https://heroku-boot-todoapp-seif.herokuapp.com/tasks/"
   )
+  const error = new Error("error")
+  error.status = 500
+  throw error
+  // throw new Error({ status: 500 })
+
   return result.data._embedded.tasks
 }

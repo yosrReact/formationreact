@@ -5,10 +5,11 @@ import { applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import rootReducer from "./reducers"
 import { createStore } from "redux"
+import { errorsHandling } from './middlewares/errors';
 
 // console.log('createStore(rootReducer): ', createStore(rootReducer()).getState());
 export const configureStore = () => {
-  const middlewares = [thunk]
+  const middlewares = [thunk, errorsHandling]
   const composeEnhancers =
     process.env.NODE_ENV !== "production"
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

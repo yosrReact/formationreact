@@ -19,6 +19,7 @@ export const fetchTasks = () => async (dispatch) => {
       } catch (e) {
        dispatch({
          type: types.FETCH_TASKS_FAILURE,
+         e
        })
       }
 
