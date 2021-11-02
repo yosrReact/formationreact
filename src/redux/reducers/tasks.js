@@ -9,7 +9,7 @@ export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
 const initialState = {
   selectedTask: {},
   loading: false,
-  errors: false,
+  error: false,
   list: [],
 }
 
@@ -28,6 +28,11 @@ const tasksSlice = createSlice({
         console.log('action: ', action);
        state.list= [...action.payload]
        state.loading= false 
+     
+      })
+      .addCase(fetchTasks.rejected, (state, action) => {
+       state.loading= false 
+       state.error = true 
      
       })
   }
