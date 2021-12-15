@@ -6,7 +6,7 @@ import "./Hello.css"
 function Hello({ value }) {
   return (
     <div className="hello">
-      <Menu />
+      {/* <Menu /> */}
       <div>{value}</div>
     </div>
   )

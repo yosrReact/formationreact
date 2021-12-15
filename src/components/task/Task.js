@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./Task.css"
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 import { useHistory, Redirect } from "react-router-dom"
 
 export default function Task({ id, title, duration, deleteTask, updateTask }) {
@@ -12,28 +12,27 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
     setUpdateMode(false)
   }
   //1ère forme de useEffect
-   useEffect(() => {
-     // console.log("hello")
-     document.title = title
-     // setTitle("hello"+ Math.random())
-   })
+  useEffect(() => {
+    // console.log("hello")
+    document.title = title
+    // setTitle("hello"+ Math.random())
+  })
   const history = useHistory()
   const handleDetails = () => {
-    history.push(`/tasks/${id}`)
+    history.push('/tasks/'+id)
   }
   return (
     <div className="task">
       {/* {taskId && <Redirect to={`/tasks/${id}`} /> } */}
       {!updateMode ? (
         <>
-          {/* <div onClick={handleDetails} className="link"> */}
-            <Link to={`/tasks/${id}`}>
-
+          <div onClick={handleDetails}>
+          {/* <Link to={"/tasks/" + id}> */}
             <div className="title">
               {title} ({duration} mn)
             </div>
-            </Link>
-          {/* </div> */}
+          {/* </Link> */}
+          </div>
           <div className="actions">
             <div>
               <button onClick={() => deleteTask(id)}>delete</button>
@@ -63,4 +62,3 @@ export default function Task({ id, title, duration, deleteTask, updateTask }) {
     </div>
   )
 }
-

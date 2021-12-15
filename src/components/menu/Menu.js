@@ -1,39 +1,30 @@
 import React from "react"
 import { Link, NavLink } from "react-router-dom"
-import './Menu.css'
+import "./Menu.css"
 function Menu() {
   return (
     <ul>
       <li>
-        <NavLink to="/hello" activeClassName="active"
-        isActive={(_, { pathname }) =>
-            pathname.match("/hello") || pathname === "/"
-          }
-        >
+        <NavLink to="/teacher/hello" activeClassName="active">
           Home
-        </NavLink>{" "}
-        {/* <Link to="/hello">Home</Link> */}
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/tasks" activeClassName="active">
-          My tasks
-        </NavLink>
-        {/* <Link to="/tasks"> My tasks</Link> */}
+        <NavLink to="/teacher/tasks"> My tasks</NavLink>
       </li>
     </ul>
   )
 }
-        {
-          /* <NavLink to="/tasks" activeClassName="active">
+{
+  /* <NavLink to="/tasks" activeClassName="actives">
           My tasks
         </NavLink> */
-        }
-        {
-
-          //  isActive={(_, { pathname }) =>
-          //   pathname.match("/hello") || pathname === "/"
-          // }
-          /* <NavLink
+}
+{
+  //  isActive={(_, { pathname }) =>
+  //   pathname.match("/hello") || pathname === "/"
+  // }
+  /* <NavLink
           to="/hello"
           activeClassName="active"
           isActive={(_, { pathname }) =>
@@ -43,5 +34,5 @@ function Menu() {
         >
           Home
         </NavLink> */
-        }
+}
 export default Menu

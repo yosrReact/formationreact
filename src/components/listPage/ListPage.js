@@ -79,7 +79,7 @@ function ListPage() {
 
   return (
     <div className="list-view">
-      <Menu />
+      {/* <Menu /> */}
       <div className="toggle">
         <button onClick={toggleVisibility}>Toggle visibility</button>
       </div>
