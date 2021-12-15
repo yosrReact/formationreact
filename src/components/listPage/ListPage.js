@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux"
 import * as actions from '../../redux/actions/tasks'
 
 function ListPage({ selectedTaskName, setSelectedName }) {
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   // const [tasks, setTasks] = useState([])
   const dispatch = useDispatch()
   const tasks = useSelector(state => state.tasks)
@@ -95,8 +95,8 @@ function ListPage({ selectedTaskName, setSelectedName }) {
         <div>
           <TaskForm addTask={addTask} />
 
-          {loading && <div>Loading ... </div>}
-          {!loading && isVisible && (
+          {tasks.loading && <div>Loading ... </div>}
+          {!tasks.loading && isVisible && (
             <TasksList
               tasks={tasks.list}
               deleteTask={deleteTask}
@@ -104,6 +104,7 @@ function ListPage({ selectedTaskName, setSelectedName }) {
               setSelectedName={setSelectedName}
             />
           )}
+          {tasks.error && <div>error...</div>}
         </div>
       </div>
     </div>

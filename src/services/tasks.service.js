@@ -17,12 +17,13 @@ let tasks = [
   },
 ]
 
-// function delay(ms) {
-//   return new Promise((resolve) => setTimeout(resolve, ms))
-// }
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
-export const fetchTasks = () => {
-  // await delay(1000)
+export const fetchTasks = async() => {
+ await delay(1000)
+ throw new Error()
   return tasks
 }
 export const fetchTasksByFilter = (searchValue) => {

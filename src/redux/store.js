@@ -1,10 +1,13 @@
-import { combineReducers } from "redux";
-import { createStore } from "redux";
-import { tasks } from './reducers/tasks';
-
-export const store = createStore(
-  combineReducers({
-    tasks: tasks,
-  }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+import { applyMiddleware, compose, createStore } from "redux"
+import { rootReducers } from "./reducers/index"
+import thunk from "redux-thunk"
+import logger from "redux-logger"
+export const configureStore = () => {
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const store = createStore(
+    rootReducers(),
+    composeEnhancers(applyMiddleware(thunk, logger))
+  )
+  return store
+}
